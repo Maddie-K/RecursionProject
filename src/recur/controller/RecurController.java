@@ -16,9 +16,10 @@ public class RecurController
 		
 		while (!text.equals(""))
 		{
-			int number = Integer.parseInt(text);
-			int result = fibRecursive(number);
-			view.showMessage("The" + number + "th fibonacci is:" + result);
+			//double number = Double.parseDouble(text);
+			String result = mystery(text);
+			view.showMessage(result);
+			text = view.askQuestion("next word?");
 			
 			text = view.askQuestion("type in the next value or blank to end.");
 		}
@@ -33,6 +34,29 @@ public class RecurController
 		else
 		{
 			return fibRecursive(input - 1) + fibRecursive(input - 2);
+		}
+	}
+	
+	private double factorial(double number)
+	{
+		if (number == 0 || number == 1)
+		{
+			return 1;
+		else
+		{
+			return (number * factorial(number - 1));
+		}
+	}
+	
+	private String mystery(String text)
+	{
+		if (text.length() == 1)
+		{
+			return text;
+		}
+		else
+		{
+			return mystery (text.substring(1) + text.substring(0,1));
 		}
 	}
 }
